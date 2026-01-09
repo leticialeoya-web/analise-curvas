@@ -429,7 +429,11 @@ const LIMITES_GERAIS = [
   "Não substitui dados clínicos, numéricos ou exames complementares.",
   "Não orienta ajustes ventilatórios ou condutas."
 ];
-
+const LIMITES_CURTOS = [
+  "Leitura baseada apenas na forma da curva.",
+  "Não permite diagnóstico ou definição de causa.",
+  "Não orienta ajustes ou condutas."
+];
 const LIMITES_CURVA = {
   pressao: [
     "Não permite calcular complacência estática.",
@@ -900,7 +904,9 @@ function buildReading(curvaKey, faseKey, sigIds, mode, regOpt){
     }
   }
 
-  const limits = formatLimits(curvaKey, mode==="av" ? tipos : []); // Essencial sem limites por tipo (por decisão editorial)
+  const limits = (mode==="ess")
+  ? LIMITES_CURTOS.map(x => "• " + x).join("\n")
+  : formatLimits(curvaKey, tipos);
 
   return {
     ok:true,
