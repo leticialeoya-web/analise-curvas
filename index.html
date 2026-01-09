@@ -345,8 +345,13 @@
 
           <div class="sep"></div>
 
-          <h3>Limites da interpretação</h3>
-          <div id="av_limits" class="muted"></div>
+        <h3>Limites da interpretação</h3>
+<div id="av_limits_short" class="muted"></div>
+
+<details style="margin-top:10px;">
+  <summary>Ver limites completos</summary>
+  <div id="av_limits" class="muted" style="margin-top:8px; white-space:pre-line;"></div>
+</details>
 
           <div class="sep"></div>
           <div class="row">
@@ -904,8 +909,8 @@ function buildReading(curvaKey, faseKey, sigIds, mode, regOpt){
     }
   }
 
-  const limits = (mode==="ess")
-  ? LIMITES_CURTOS.map(x => "• " + x).join("\n")
+ const limits = (mode==="ess")
+  ? LIMITE_ESSENCIAL
   : formatLimits(curvaKey, tipos);
 
   return {
